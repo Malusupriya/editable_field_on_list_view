@@ -1,0 +1,20 @@
+<odoo>
+    <template id="editable_field_on_tree" name="Backend Assets (used in backend interface)" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!--Importing JS files-->
+            <script type="text/javascript" src="/editable_field_on_tree_view/static/src/js/list_renderer.js"></script>
+        </xpath>
+    </template>
+
+    <record id="view_quotation_tree_js" model="ir.ui.view">
+        <field name="name">sale.order.tree.js</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="widget">many2one</attribute>
+                <attribute name="attrs">{'editable': 1}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
